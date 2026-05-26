@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function () {
+      var repo = '/To-Do-List';
+      var path = location.pathname;
+      if (path.indexOf(repo) === 0) {
+        location.replace(repo + '/' + (location.search || '') + (location.hash || ''));
+      } else {
+        location.replace(repo + '/');
+      }
+    })();
+  </script>
+  <title>Redirecting…</title>
+</head>
+<body>
+  <p>Redirecting to <a href="/To-Do-List/">NexusTask</a>…</p>
+</body>
+</html>

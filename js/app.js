@@ -513,7 +513,7 @@ const UI = {
     globalSearch?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && globalSearch.value.trim()) {
         sessionStorage.setItem('nexustask_search', globalSearch.value.trim());
-        window.location.href = 'tasks.html';
+        window.location.assign(new URL('tasks.html', window.location.href).href);
       }
     });
 
