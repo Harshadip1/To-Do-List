@@ -1,0 +1,118 @@
+/* Responsive — NexusTask */
+
+@media (max-width: 1200px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .analytics-stat-row { grid-template-columns: repeat(2, 1fr); }
+  .calendar-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 992px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: var(--shadow);
+  }
+
+  .main-content { margin-left: 0; }
+
+  .menu-toggle { display: flex; }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition);
+  }
+
+  .sidebar-overlay.open { opacity: 1; visibility: visible; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .page-content { padding: 1.25rem; }
+
+  .header { padding: 0 1rem; }
+
+  .search-bar { max-width: none; }
+
+  .header-actions .search-bar { display: none; }
+
+  .grid-4, .grid-3, .analytics-stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-banner { padding: 1.5rem; }
+  .welcome-banner h2 { font-size: 1.25rem; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .notif-dropdown {
+    width: calc(100vw - 2rem);
+    right: -1rem;
+  }
+
+  .fab { bottom: 1.5rem; right: 1.5rem; }
+
+  .quick-add {
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+  }
+
+  .bulk-bar {
+    left: 1rem;
+    right: 1rem;
+    transform: translateX(0) translateY(100px);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .bulk-bar.visible {
+    transform: translateX(0) translateY(0);
+  }
+
+  .filters-bar { flex-direction: column; align-items: stretch; }
+  .filter-select { width: 100%; }
+
+  .cal-day { font-size: 0.75rem; padding: 0.2rem; }
+
+  .task-actions { opacity: 1; }
+
+  .tabs { overflow-x: auto; flex-wrap: nowrap; }
+}
+
+@media (max-width: 480px) {
+  .stat-value { font-size: 1.5rem; }
+
+  .progress-circle { width: 110px; height: 110px; }
+
+  .pomodoro-timer { font-size: 2rem; }
+
+  .sticky-note { width: 100%; }
+
+  .modal { max-height: 95vh; }
+
+  .page-header h1 { font-size: 1.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .particle { display: none; }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calendar view — NexusTask">
+  <title>Calendar — NexusTask</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="calendar">
+  <div class="particles" aria-hidden="true"></div>
+
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="logo"><div class="logo-icon">⚡</div><span>NexusTask</span></div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a></li>
+        <li class="nav-item"><a href="tasks.html" class="nav-link" data-page="tasks"><span class="nav-icon">✅</span> Tasks</a></li>
+        <li class="nav-item"><a href="calendar.html" class="nav-link" data-page="calendar"><span class="nav-icon">📅</span> Calendar</a></li>
+        <li class="nav-item"><a href="analytics.html" class="nav-link" data-page="analytics"><span class="nav-icon">📈</span> Analytics</a></li>
+        <li class="nav-item"><a href="settings.html" class="nav-link" data-page="settings"><span class="nav-icon">⚙️</span> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="productivity-mini">
+          <h4>Daily Progress</h4>
+          <div class="mini-progress"><div class="mini-progress-bar"></div></div>
+          <p style="font-size:0.8rem;margin-top:0.5rem;color:var(--text-muted)"><span class="sidebar-score">0%</span> complete</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="search" id="globalSearch" placeholder="Search tasks..." aria-label="Search">
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="notif-wrapper">
+            <button class="icon-btn" id="notifToggle" aria-label="Notifications">🔔<span class="badge" id="notifBadge">0</span></button>
+            <div class="notif-dropdown" id="notifDropdown">
+              <div class="notif-header"><h3>Notifications</h3></div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="page-header reveal">
+          <h1>Calendar</h1>
+          <p>Plan your schedule and never miss a deadline.</p>
+        </div>
+
+        <div class="cal-view-tabs reveal">
+          <button class="cal-tab active" data-view="month">Monthly</button>
+          <button class="cal-tab" data-view="week">Weekly</button>
+          <button class="cal-tab" data-view="day">Daily</button>
+        </div>
+
+        <div class="calendar-layout reveal">
+          <div class="calendar-main">
+            <div class="calendar-header">
+              <button class="cal-nav-btn" id="calPrev" aria-label="Previous">‹</button>
+              <h2 id="calTitle">May 2026</h2>
+              <button class="cal-nav-btn" id="calNext" aria-label="Next">›</button>
+            </div>
+            <div id="calendarView"></div>
+          </div>
+
+          <aside>
+            <div class="card" style="margin-bottom:1rem">
+              <h3 class="section-title">Reminders</h3>
+              <div id="remindersList"></div>
+            </div>
+            <div class="card" id="dayDetailCard">
+              <h3 class="section-title" id="selectedDateTitle">Select a date</h3>
+              <div id="dayTasks"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="eventModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="eventModalTitle">Task Details</h2>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="eventModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Close</button>
+        <a href="tasks.html" class="btn btn-primary" id="eventEditLink">Edit Task</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/calendar.js"></script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Settings — NexusTask">
+  <title>Settings — NexusTask</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="settings">
+  <div class="particles" aria-hidden="true"></div>
+
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="logo"><div class="logo-icon">⚡</div><span>NexusTask</span></div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a></li>
+        <li class="nav-item"><a href="tasks.html" class="nav-link" data-page="tasks"><span class="nav-icon">✅</span> Tasks</a></li>
+        <li class="nav-item"><a href="calendar.html" class="nav-link" data-page="calendar"><span class="nav-icon">📅</span> Calendar</a></li>
+        <li class="nav-item"><a href="analytics.html" class="nav-link" data-page="analytics"><span class="nav-icon">📈</span> Analytics</a></li>
+        <li class="nav-item"><a href="settings.html" class="nav-link" data-page="settings"><span class="nav-icon">⚙️</span> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="productivity-mini">
+          <h4>Daily Progress</h4>
+          <div class="mini-progress"><div class="mini-progress-bar"></div></div>
+          <p style="font-size:0.8rem;margin-top:0.5rem;color:var(--text-muted)"><span class="sidebar-score">0%</span> complete</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <h2 style="font-size:1.1rem;font-weight:600">Settings</h2>
+        </div>
+        <div class="header-actions">
+          <div class="notif-wrapper">
+            <button class="icon-btn" id="notifToggle" aria-label="Notifications">🔔<span class="badge" id="notifBadge">0</span></button>
+            <div class="notif-dropdown" id="notifDropdown">
+              <div class="notif-header"><h3>Notifications</h3></div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="page-header reveal">
+          <h1>Settings</h1>
+          <p>Customize your productivity experience.</p>
+        </div>
+
+        <div class="settings-grid">
+          <div class="card reveal">
+            <h3 class="section-title">Appearance</h3>
+            <div class="setting-item">
+              <div>
+                <strong>Dark Mode</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Toggle between dark and light themes</p>
+              </div>
+              <div class="toggle" id="darkModeToggle" role="switch" aria-checked="true" tabindex="0"></div>
+            </div>
+            <div class="setting-item">
+              <div>
+                <strong>Accent Color</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Choose your primary theme color</p>
+              </div>
+              <div class="theme-colors" id="themeColors">
+                <div class="theme-swatch active" data-color="#7C3AED" style="background:#7C3AED" title="Purple"></div>
+                <div class="theme-swatch" data-color="#06B6D4" style="background:#06B6D4" title="Cyan"></div>
+                <div class="theme-swatch" data-color="#22C55E" style="background:#22C55E" title="Green"></div>
+                <div class="theme-swatch" data-color="#EC4899" style="background:#EC4899" title="Pink"></div>
+                <div class="theme-swatch" data-color="#F59E0B" style="background:#F59E0B" title="Amber"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="section-title">Notifications</h3>
+            <div class="setting-item">
+              <div>
+                <strong>Push Notifications</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Receive in-app deadline reminders</p>
+              </div>
+              <div class="toggle active" id="notifToggleSetting" role="switch" tabindex="0"></div>
+            </div>
+            <div class="setting-item">
+              <div>
+                <strong>Email Reminders</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Get email alerts for upcoming tasks</p>
+              </div>
+              <div class="toggle" id="emailToggle" role="switch" tabindex="0"></div>
+            </div>
+            <div class="setting-item">
+              <div>
+                <strong>Pomodoro Duration</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Focus session length in minutes</p>
+              </div>
+              <select class="filter-select" id="pomodoroSetting">
+                <option value="15">15 min</option>
+                <option value="25" selected>25 min</option>
+                <option value="45">45 min</option>
+                <option value="60">60 min</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="section-title">Language & Region</h3>
+            <div class="setting-item">
+              <div>
+                <strong>Language</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Interface language</p>
+              </div>
+              <select class="filter-select" id="languageSetting">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="ja">日本語</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="section-title">Data Management</h3>
+            <div class="setting-item">
+              <div>
+                <strong>Export Data</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Download all tasks as JSON</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="exportBtn">Export</button>
+            </div>
+            <div class="setting-item">
+              <div>
+                <strong>Import Data</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Restore from backup file</p>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="importBtn">Import</button>
+              <input type="file" id="importFile" accept=".json" hidden>
+            </div>
+            <div class="setting-item">
+              <div>
+                <strong>Reset All Data</strong>
+                <p style="font-size:0.85rem;color:var(--text-muted)">Clear tasks and restore demo data</p>
+              </div>
+              <button class="btn btn-danger btn-sm" id="resetBtn">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      NexusStore.load();
+      const settings = NexusStore.getSettings();
+
+      const darkToggle = document.getElementById('darkModeToggle');
+      darkToggle.classList.toggle('active', settings.theme === 'dark');
+      darkToggle.addEventListener('click', () => {
+        const theme = ThemeManager.toggle();
+        darkToggle.classList.toggle('active', theme === 'dark');
+        document.getElementById('themeToggle').textContent = theme === 'dark' ? '🌙' : '☀️';
+      });
+
+      document.querySelectorAll('.theme-swatch').forEach(swatch => {
+        if (swatch.dataset.color === settings.accentColor) swatch.classList.add('active');
+        swatch.addEventListener('click', () => {
+          document.querySelectorAll('.theme-swatch').forEach(s => s.classList.remove('active'));
+          swatch.classList.add('active');
+          NexusStore.updateSettings({ accentColor: swatch.dataset.color });
+          ThemeManager.apply(NexusStore.getSettings().theme, swatch.dataset.color);
+          UI.toast('Accent color updated', 'success');
+        });
+      });
+
+      const notifSetting = document.getElementById('notifToggleSetting');
+      notifSetting.classList.toggle('active', settings.notifications);
+      notifSetting.addEventListener('click', () => {
+        notifSetting.classList.toggle('active');
+        NexusStore.updateSettings({ notifications: notifSetting.classList.contains('active') });
+      });
+
+      const emailToggle = document.getElementById('emailToggle');
+      emailToggle.classList.toggle('active', settings.emailReminders);
+      emailToggle.addEventListener('click', () => {
+        emailToggle.classList.toggle('active');
+        NexusStore.updateSettings({ emailReminders: emailToggle.classList.contains('active') });
+      });
+
+      document.getElementById('pomodoroSetting').value = settings.pomodoroMinutes || 25;
+      document.getElementById('pomodoroSetting').addEventListener('change', (e) => {
+        NexusStore.updateSettings({ pomodoroMinutes: parseInt(e.target.value, 10) });
+        UI.toast('Pomodoro duration saved', 'success');
+      });
+
+      document.getElementById('languageSetting').value = settings.language || 'en';
+      document.getElementById('languageSetting').addEventListener('change', (e) => {
+        NexusStore.updateSettings({ language: e.target.value });
+        UI.toast('Language preference saved', 'info');
+      });
+
+      document.getElementById('exportBtn').addEventListener('click', () => {
+        const blob = new Blob([NexusStore.exportData()], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'nexustask-backup.json';
+        a.click();
+        UI.toast('Data exported', 'success');
+      });
+
+      document.getElementById('importBtn').addEventListener('click', () => {
+        document.getElementById('importFile').click();
+      });
+
+      document.getElementById('importFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (NexusStore.importData(reader.result)) {
+            UI.toast('Data imported successfully', 'success');
+            UI.updateSidebarProgress();
+          } else UI.toast('Invalid backup file', 'error');
+        };
+        reader.readAsText(file);
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (!confirm('Reset all data to demo defaults?')) return;
+        localStorage.removeItem('nexustask_data');
+        NexusStore.load();
+        UI.toast('Data reset to defaults', 'success');
+        UI.updateSidebarProgress();
+      });
+
+      const themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) themeBtn.textContent = settings.theme === 'dark' ? '🌙' : '☀️';
+      UI.updateSidebarProgress();
+    });
+  </script>
+</body>
+</html>

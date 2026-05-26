@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NexusTask — Premium productivity and task management platform">
+  <title>Dashboard — NexusTask</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="dashboard">
+  <div class="particles" aria-hidden="true"></div>
+
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <span>NexusTask</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a></li>
+        <li class="nav-item"><a href="tasks.html" class="nav-link" data-page="tasks"><span class="nav-icon">✅</span> Tasks</a></li>
+        <li class="nav-item"><a href="calendar.html" class="nav-link" data-page="calendar"><span class="nav-icon">📅</span> Calendar</a></li>
+        <li class="nav-item"><a href="analytics.html" class="nav-link" data-page="analytics"><span class="nav-icon">📈</span> Analytics</a></li>
+        <li class="nav-item"><a href="settings.html" class="nav-link" data-page="settings"><span class="nav-icon">⚙️</span> Settings</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="productivity-mini">
+          <h4>Daily Progress</h4>
+          <div class="mini-progress"><div class="mini-progress-bar" style="width:0%"></div></div>
+          <p style="font-size:0.8rem;margin-top:0.5rem;color:var(--text-muted)"><span class="sidebar-score">0%</span> complete</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="search" id="globalSearch" placeholder="Search tasks..." aria-label="Search tasks">
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="notif-wrapper">
+            <button class="icon-btn" id="notifToggle" aria-label="Notifications">🔔<span class="badge" id="notifBadge">0</span></button>
+            <div class="notif-dropdown" id="notifDropdown">
+              <div class="notif-header"><h3>Notifications</h3></div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="welcome-banner reveal">
+          <h2 id="welcomeTitle">Welcome back</h2>
+          <p id="welcomeSubtitle">Here's your productivity overview for today.</p>
+        </section>
+
+        <div class="grid grid-4 reveal" style="margin-bottom:2rem">
+          <div class="card stat-card">
+            <div class="stat-icon purple">✅</div>
+            <div class="stat-value" id="statCompleted">0</div>
+            <div class="stat-label">Completed Tasks</div>
+            <div class="stat-change" id="statCompletedChange">—</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon cyan">📋</div>
+            <div class="stat-value" id="statPending">0</div>
+            <div class="stat-label">Pending Tasks</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon green">📈</div>
+            <div class="stat-value" id="statScore">0</div>
+            <div class="stat-label">Productivity Score</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-icon amber">⏰</div>
+            <div class="stat-value" id="statDeadlines">0</div>
+            <div class="stat-label">Due This Week</div>
+          </div>
+        </div>
+
+        <div class="grid grid-3" style="margin-bottom:2rem">
+          <div class="card reveal">
+            <h3 class="section-title">Daily Progress</h3>
+            <div class="progress-circle-wrap">
+              <div class="progress-circle">
+                <svg width="140" height="140" viewBox="0 0 140 140">
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#7C3AED"/>
+                      <stop offset="100%" stop-color="#06B6D4"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="progress-circle-bg" cx="70" cy="70" r="60"/>
+                  <circle class="progress-circle-fill" id="progressCircle" cx="70" cy="70" r="60"/>
+                </svg>
+                <div class="progress-circle-text">
+                  <span id="progressPercent">0%</span>
+                  <span>Complete</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="section-title">Task Overview</h3>
+            <div class="chart-container"><canvas id="dashboardChart" aria-label="Task overview chart"></canvas></div>
+          </div>
+
+          <div class="card reveal pomodoro-widget">
+            <h3 class="section-title">Pomodoro Timer</h3>
+            <div class="pomodoro-timer" id="pomodoroDisplay">25:00</div>
+            <div class="pomodoro-controls">
+              <button class="btn btn-primary btn-sm" id="pomodoroStart">Start</button>
+              <button class="btn btn-secondary btn-sm" id="pomodoroReset">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card reveal">
+            <h3 class="section-title">Recent Activity</h3>
+            <ul class="activity-list" id="activityList"></ul>
+          </div>
+
+          <div class="card reveal">
+            <h3 class="section-title">Upcoming Deadlines</h3>
+            <div id="deadlineList"></div>
+          </div>
+        </div>
+
+        <div class="card reveal" style="margin-top:2rem">
+          <h3 class="section-title">Quick Notes</h3>
+          <div class="sticky-notes" id="stickyNotes"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
